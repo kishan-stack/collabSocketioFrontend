@@ -28,8 +28,8 @@ export default function BuildTeam() {
 
             toast.info("Please wait while we find potential users for your team")
             const response = await sendRequest("/users/getPotentialUsers", "POST", { userDescriptionOfTeam })
-            setRecommendations(response.data)
-            console.log(response.data);
+            setRecommendations(response.data.data)
+            console.log(response.data.data);
         } catch (error) {
             console.error("error :: ", error);
             toast.error("An error occured while getting recommendations")

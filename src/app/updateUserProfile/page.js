@@ -29,9 +29,9 @@ export default function UserProfile() {
             try {
                 const token = await getToken();
                 if (token) {
-                    const response = await axios.get("http://localhost:5000/api/v1/users/getAllUsers", {
-                        headers: { Authorization: `Bearer ${token}` },
-                    });
+                    
+                    const response = await sendRequest(`/users/getAllUsers/`);
+
                     console.log(response.data)
 
                     setData(response.data);
@@ -90,7 +90,7 @@ export default function UserProfile() {
         toast.info("Please wait while we save your changes...")
         try {
             const response = await sendRequest("/users/saveUserProfile", "POST", localInfo);
-            // console.log(response);
+            console.log(response);
 
             toast.success("User profile changes updated.");
             window.location.reload();

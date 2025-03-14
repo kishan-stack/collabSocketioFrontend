@@ -8,7 +8,7 @@ const baseUrl = config[environment].Url;
 
 const useApiRequest = () => {
     const { getToken } = useKindeAuth();
-    const sendRequest = async (endpoint, method = 'GET', data = null) => {
+    const sendRequest = async (endpoint, method = 'GET', data = null,params=null) => {
         const url = `${baseUrl}${endpoint}`
         try {
             const token = await getToken();
@@ -21,9 +21,10 @@ const useApiRequest = () => {
 
                 },
                 data,
+                params, 
             };
             const response = await axios(config);
-            return response.data;
+            return response;
         } catch (error) {
             console.error("Error sending API request", error);
             throw error;

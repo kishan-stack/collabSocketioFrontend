@@ -15,7 +15,7 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         if (user && user.id) {
             // Connect to the socket server with the userId
-            socket.current = io("http://localhost:5000", {
+            socket.current = io(process.env.BACKEND_URL||'http://localhost:5000', {
                 auth: { userId: user.id },
                 transports: ["websocket", "polling"],
                 reconnectionAttempts: 5,

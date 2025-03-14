@@ -59,13 +59,10 @@ export default function UserProfile() {
             try {
                 const token = await getToken();
                 if (token) {
-                    const response = await axios.get(
-                        `http://localhost:5000/api/v1/users/getAllUsers/${userid}`,
-                        {
-                            headers: { Authorization: `Bearer ${token}` },
-                        }
-                    );
-                    // console.log(response.data);
+                    
+                    const response = await sendRequest(`/users/getAllUsers/${userid}`);
+
+                    console.log(response);
 
                     setData(response.data);
                 }
@@ -253,44 +250,6 @@ export default function UserProfile() {
                 ))}
             </div>
 
-            {/* Modal for Adding Items (only visible if it's own profile) */}
-            {/* {isOwnProfile && (
-                <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={`Add ${activeSection}`}>
-                    <Input
-                        name="name"
-                        value={newItem.name}
-                        onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-                        placeholder="Enter name"
-                    />
-                    <Textarea
-                        name="description"
-                        value={newItem.description}
-                        onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
-                        placeholder="Enter description"
-                    />
-                    <Input
-                        name="additionalInfo"
-                        value={newItem.additionalInfo}
-                        onChange={(e) => setNewItem({ ...newItem, additionalInfo: e.target.value })}
-                        placeholder="Enter additional info"
-                    />
-                    <TagSelector
-                        instanceId="tag-selector"
-                        onTagsSelected={(tags) => setNewItem({ ...newItem, tags })}
-                    />
-                    <Button
-                        onClick={() => {
-                            if (newItem.name.trim()) {
-                                const updatedItem = { ...newItem };
-                                // Add logic to update data (e.g., send it to API)
-                            }
-                        }}
-                        className="mt-4 bg-indigo-600 text-white"
-                    >
-                        Add
-                    </Button>
-                </Modal>
-            )} */}
         </div>
     );
 }
