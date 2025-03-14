@@ -15,7 +15,7 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         if (user && user.id) {
             // Connect to the socket server with the userId
-            socket.current = io(process.env.BACKEND_URL||'http://localhost:5000', {
+            socket.current = io(process.env.BACKEND_URL||process.env.LOCAL_URL, {
                 auth: { userId: user.id },
                 transports: ["websocket", "polling"],
                 reconnectionAttempts: 5,
@@ -38,7 +38,7 @@ export const SocketProvider = ({ children }) => {
                 setConnectionAttempts(prev => prev + 1);
 
                 if (connectionAttempts >= 5) {
-                    console.error("Could not connect to socket after multiple attempts.");
+                    console.error("Could not connect to socket after multiple attempts.",err);
                 }// Handle connection errors
             });
 
