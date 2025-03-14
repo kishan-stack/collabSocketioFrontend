@@ -10,6 +10,7 @@ const useApiRequest = () => {
     const { getToken } = useKindeAuth();
     const sendRequest = async (endpoint, method = 'GET', data = null,params=null) => {
         const url = `${baseUrl}${endpoint}`
+        console.log(url)
         try {
             const token = await getToken();
             // console.log(token);
