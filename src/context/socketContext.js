@@ -15,6 +15,7 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         if (user && user.id) {
             // Connect to the socket server with the userId
+            console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
             socket.current = io(process.env.BACKEND_URL||process.env.LOCAL_URL, {
                 auth: { userId: user.id },
                 transports: ["websocket", "polling"],
