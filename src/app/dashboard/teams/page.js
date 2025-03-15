@@ -26,7 +26,7 @@ export default function Teams() {
                 try {
                     const response = await sendRequest("/teams/getTeams", "GET");
                     console.log(response);
-                    setTeams([...teams, ...response.data]);
+                    setTeams([...teams, ...response.data.data]);
                 } catch (error) {
                     console.error(error);
                     toast.error("Failed to fetch teams. Please try again later.");
