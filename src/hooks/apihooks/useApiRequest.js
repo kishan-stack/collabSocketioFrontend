@@ -7,6 +7,7 @@ const environment = process.env.NODE_ENV;
 const baseUrl = config[environment].Url;
 
 const useApiRequest = () => {
+    console.log("Current Environment:", environment); 
     const { getToken } = useKindeAuth();
     const sendRequest = async (endpoint, method = 'GET', data = null,params=null) => {
         const url = `${baseUrl}${endpoint}`
